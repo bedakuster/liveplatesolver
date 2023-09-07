@@ -1,6 +1,16 @@
 # LivePlateSolver
 LivePlateSolver supports your SkyWatcher Adventurer capturing session by live plate solving star images and giving advice how to perfectly center your target. It can be cumbersome to find a small or dark object in the skies with starhoping if you are using a telescope with a bigger focal length (e.g. 420mm). I once spent 2 hours looking for the Crescent Nebula and I don't want to repeat this experience anytime again. Some say i'm still looking for it... As soon as you get in the range of the object this tool will tell you how to manipulate your SkyWatcher Adventurer to center it. 
 
+```
+Center Coordinate: 
+    RA: 13:52:16.7215557
+    Dec: 50° 11' 22"
+
+Compensation (SkyWatcher Star Adventurer 2i):
+    RA: 00:10:55.2784442 => Press left button 55 seconds
+    Dec: (4, 9, 35) => turn declination knob 1.39 counter-clockwise
+```
+
 ![M33 4hrs, perfectly centered within 10 minutes on a SkyWatcher Adventurer 2](docs/intro.jpg)
 
 # Preparation
@@ -35,11 +45,22 @@ Move the Date Graduation Circle so that 1/1 stays at 00:00 of the Time Graduatio
 
 If you now turn the mounting plattform you can set a any hour angle (set 1/1 to desired hour angle), as long as the Time Meridian Indicator is still pointing to your own mark. This value is available in Stellarium and depends on your position and current time. Don't confuse it with right ascension.
 
-In this example I take the Pinwheel Galaxy Hour Angle 04:51 from Stellarium.
+
+### Positioning Sample
+
+Use following steps to locate an object. To practise you can use any bright star, which makes it much more easier to begin.
+
+In this example I take the Pinwheel Galaxy. I get its Hour Angle from Stellarium.
+> Hour Angle depends on your current location and time. Make sure Stellarium has your correct position and also double-check the current time set in Stellarium.
+
 ![Find Hour Angle of Pinwheel](docs/pinwheel-hour-angle.jpg)
 
-Release the clutch and rotate the platform until 1/1 on the date scale is aligned with 04:51 on the Time Graduation scale. Make sure the your own mark matches the Time Meridian Mark on the inner Ring.
+Release the clutch and rotate the platform until 1/1 on the date scale is aligned with 04:51 on the Time Graduation scale. Make sure your own mark matches the Time Meridian Mark on the inner Ring.
 ![Set Hour Angle](docs/set-hour-angle.jpg)
+
+
+You now are aligned in right ascension to the Pinwheel Galaxy. Turn the knob on the mounting platform to set the declination value to 54° 21'. There are two possible directions, use the direction which makes more sense. If you encounter a negative declination, you can point the objective/telescope backwards to its positive declination value.
+
 
 
 ### Some Sort of Capturing Software
@@ -48,7 +69,7 @@ This tool works by monitoring a directory where new images are stored from your 
 There is support for automatically converting *.cr2 raw images to jpg to feed PlateSolver2.
 
 ## PS Align Pro (recommended)
-I use this [app](https://apps.apple.com/us/app/polar-scope-align-pro/id970161373) to adjust polar alignment after moving the telescope by hand. Usually the mount gets shifted a bit and polar alignment will move as well. This procedure only works if the Star Adventurer is leveled out at the beginning.
+I use this [app](https://apps.apple.com/us/app/polar-scope-align-pro/id970161373) to adjust polar alignment after moving the telescope by hand. Usually the mount gets shifted a bit and polar alignment will move as well. This procedure only works if the Star Adventurer is leveled out.
 - After changing the Telescopes position, the crosshair usually is rotated, making it hard to decide where Polaris must be in the Circle
 - Move the Date Graduation Circle so the Time Meridian Indicator is lined up with 0° on the Date Graduation Circle
 ![Find RA Rotation](docs/polar-align-rotated.jpg)
