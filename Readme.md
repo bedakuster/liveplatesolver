@@ -15,8 +15,14 @@ Compensation (SkyWatcher Star Adventurer 2i):
 
 # Preparation
 
-## PlateSolver2 (required)
-Install PlateSolver2 and download a starset (https://planewave.com/software/). Configure the Starset in the settings of PlateSolver2 and make some testruns before use.
+## Dotnet Runtime
+Install .NET (https://dotnet.microsoft.com/en-us/download).
+For Astroberry follow this guide: (https://learn.microsoft.com/en-us/dotnet/iot/deployment)
+
+> Make sure to install it with user astroberry. Dotnet will be installed in users home path
+
+## PlateSolver2 or Astap (required)
+Install PlateSolver2 (https://planewave.com/software/) or Astap (https://www.hnsky.org/astap.htm) and download a starset for the solver. Astap is usually faster and also supported in linux. Configure the Starset in the settings of PlateSolver2 and make some testruns before use.
 
 ## Skywatcher Adventurer Mods
 
@@ -88,9 +94,14 @@ I use this [app](https://apps.apple.com/us/app/polar-scope-align-pro/id970161373
     - Lets choose Pinwheel Galaxy: RA 14h 03m 12s | +54° 20' 27"
 4. Move your telescope into the range of the target
 5. After moving the telescope by hand, i usually have to check polar alignment. Use PS Align Pro for easy alignment in rotated state
-5. Start the Program
+6. Start the Program
+    
+    Windows: 
+
     ```
     .\LivePlateSolver.exe `
+        --tool [astap|platesolve]
+        --executable-path ["C:\Program Files\astap\astap.exe" | "C:\Program Files\PlateSolve2.28\PlateSolve2.exe"]
         --right-ascension 14:03:12 `
         --declination 54:20:27 `
         --monitor c:\\Users\\Someone\\Pictures\\Pinwheel `
@@ -99,19 +110,32 @@ I use this [app](https://apps.apple.com/us/app/polar-scope-align-pro/id970161373
         --height 15 `
         --regions 200 
     ```
+
+    Linux
+    > Use this tool from a astroberry web terminal. If you want to use it with ssh, further configuration is needed to allow ForwardingX11
+    ```
+    dotnet LivePlateSolver.dll -- --tool astap --executable-path /opt/astap/astap \
+        --right-ascension 14:03:12 \
+        --declination 54:20:27 \
+        --monitor /imagelocation \
+        --focal-length 620 \
+        --width 22 \
+        --height 15
+    ```
+
     Submit RA and Dec are in time notation. They can be negative.
 
     Focal Length should be adjusted with Reducer and Crop factor. My telescope is 420mm, i have a 0.85 reducer and a APS-C Sensor (1.6x) so it adds up to 571. Its just an estimation, however if its totally wrong platesolving wont work.
 
     Width and Height is the Camera Sensors size in mm.
 
-    The more regions you check, the longer it might take and the bigger the tolerance is. PlateSolver2 starts solving in a spiral way from the target, so if you are near the target it will resolve pretty fast.
+    The more regions you check, the longer it might take and the bigger the tolerance is.
 
-5. The Program will tell you that it started monitoring the directory for new images
-6. Make a photo with your mounted camera, pointing somewhere roughly into the direction of the pinwheel galaxy.
+7. The Program will tell you that it started monitoring the directory for new images
+8. Make a photo with your mounted camera, pointing somewhere roughly into the direction of the pinwheel galaxy.
     - The foto must not be long exposured. Usually some seconds are enough to find some bright stars.
-7. Put the photo into the folder (or have it put there by a camera remote controll software)
-8. The Programm will invoke PlateSolver2 with need parameters and evaluates its output. It will give you some advice how to proceed:
+9. Put the photo into the folder (or have it put there by a camera remote controll software)
+10. The Programm will invoke PlateSolver2 with need parameters and evaluates its output. It will give you some advice how to proceed:
 
 ```
 Waiting 5000ms before processing file to avoid file system errors.
